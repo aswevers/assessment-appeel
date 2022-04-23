@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="header">
+    <h1>Overview GitHub repositories</h1>
+  </div>
+  <form [formGroup]="searchForm">
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput type="text" formControlName="searchString" (keyup)="search()"/>
+    </mat-form-field>
+  </form>
+
+  <table mat-table [dataSource]="repositories" class="mat-elevation-z8" matSort  #empTbSortWithObject="matSort">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let repository"> {{repository.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let repository"> {{repository.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="commitsCount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Commits </th>
+      <td mat-cell *matCellDef="let repository">
+        <a [routerLink]="['/commits/' + repository.name]">{{repository.commitsCount}} commits</a>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <!-- <table matSort (matSortChange)="sortData($event)"class="mat-elevation-z8" >
+    <tr>
+      <th mat-sort-header="name"> Name </th>
+      <th mat-sort-header="description"> Description </th>
+      <th mat-sort-header="commits"> Commits </th>
+    </tr>
+
+    <tr *ngFor="let repository of sortedData">
+      <td>{{repository.name}}</td>
+      <td>{{repository.description}}</td>
+      <td><a [routerLink]="['/commits/' + repository.name]">{{repository.commitsCount}} commits</a></td>
+    </tr>
+  </table> -->
+</div>
