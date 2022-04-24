@@ -25,7 +25,7 @@ export class RepositoryListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.repositoryService.getRepositoriesByUsername('aswevers').subscribe(result => {
       result.forEach(element => {
-        this.repositoryService.getAllCommitsByRepositoryName('aswevers', element.name).subscribe(commits => {
+        this.repositoryService.getCommitsByRepositoryName('aswevers', element.name).subscribe(commits => {
           element.commitsCount = commits.length.toString();
         });
 
@@ -49,7 +49,7 @@ export class RepositoryListComponent implements OnInit, AfterViewInit {
     let textFilter = this.searchForm.get('searchString').value;
     this.repositoryService.getRepositoriesByUsername(textFilter).subscribe(result => {
       result.forEach(element => {
-        this.repositoryService.getAllCommitsByRepositoryName(textFilter, element.name).subscribe(commits => {
+        this.repositoryService.getCommitsByRepositoryName(textFilter, element.name).subscribe(commits => {
           element.commitsCount = commits.length.toString();
         });
 
