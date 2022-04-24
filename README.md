@@ -1,11 +1,13 @@
+# Gebruik
+Op de HomePage zie je default een oplijsting van mijn (aswevers) repositories. In het inputveld kan je een andere username ingeven om de repositories van deze gebruiker te bekijken. Je ziet bij elke repository de naam, beschrijving en het aantal commits. Wanneer je de commits open klikt krijg je ene oplijsting van de commits die in deze repository gebeurt zijn. Ze worden per 20 weergegeven, maar dit kan aangepast worden naar persoonlijke voorkeur. Je kan de commits filteren op de commit message of de naam van de committer.
+
+# Public URL
+https://roaring-croquembouche-ba0c18.netlify.app/
+
 # ES6 functies 
   includes()
   Wordt gebruikt in de textFilter in de CommitsComponent. Er wordt gecheckt of de input in de message van een commit of de naam van de committer terug gevonden kan worden.
  
-  
-
-
-
 
 
 
@@ -24,7 +26,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/assessment-appeel` directory.
 
 ## Running unit tests
 
