@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSortModule} from '@angular/material/sort';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import {MatIconModule} from '@angular/material/icon';
     BrowserAnimationsModule,
     MatSortModule,
     ScrollingModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule,
+    MatPaginatorModule
   ],
   exports: [
     MatFormFieldModule,

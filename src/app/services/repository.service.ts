@@ -17,7 +17,6 @@ export class RepositoryService {
 
   getCommitsByRepositoryName(username:string, repositoryName: string){
     return this.http.get<Commit[]>('https://api.github.com/repos/'+ username + '/'+ repositoryName +'/commits', {params: {
-      'per_page': 20
     }
     });
   }

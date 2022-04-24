@@ -17,6 +17,7 @@ export class RepositoryListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['name', 'description', 'commitsCount'];
   sortedData: Repository[];
   searchCtrl = new FormControl();
+  username: string|null = 'aswevers';
 
   constructor(private repositoryService: RepositoryService){
   }
@@ -57,6 +58,7 @@ export class RepositoryListComponent implements OnInit, AfterViewInit {
 
 
     });
+    this.username = textFilter;
     return textFilter;
   }
 

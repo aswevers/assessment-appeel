@@ -4,7 +4,7 @@ import { DetailComponent } from './components/detail/detail.component';
 import { RepositoryListComponent } from './components/repository-list/repository-list.component';
 
 const routes: Routes = [
-  { path: 'commits/:repositoryName', component: DetailComponent},
+  { path: 'commits/:username/:repositoryName', component: DetailComponent},
   { path: '', component: RepositoryListComponent},
 ];
 

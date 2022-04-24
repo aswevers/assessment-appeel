@@ -5,6 +5,7 @@ import { Commit } from 'src/app/models/commit.model';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Repository } from 'src/app/models/repository.model';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-detail',
@@ -17,24 +18,27 @@ export class DetailComponent implements OnInit {
   commits: Commit[];
   displayedColumns: string[] = ['message', 'date', 'committer'];
   repositoryName: string|null = '';
-  // results: any[] = [];
+  username: string|null = '';
   filteredResults: any[] = [];
   searchCtrl = new FormControl();
   results: any;
   repository: Repository;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private repositoryService: RepositoryService,
     private activated: ActivatedRoute) {}
 
   ngOnInit() {
     this.repositoryName = this.activated.snapshot.paramMap.get('repositoryName') ;
+    this.username = this.activated.snapshot.paramMap.get('username') ;
     if(this.repositoryName) {
-      this.repositoryService.getRepositoryByName('aswevers', this.repositoryName).subscribe(result => {
+      this.repositoryService.getRepositoryByName(this.username, this.repositoryName).subscribe(result => {
         this.repository = result;
       });
-      this.repositoryService.getCommitsByRepositoryName('aswevers', this.repositoryName).subscribe(result => {
+      this.repositoryService.getCommitsByRepositoryName(this.username, this.repositoryName).subscribe(result => {
         this.commits = result;
         this.results = new MatTableDataSource(result);
+        this.results.paginator = this.paginator;
       });
     }
     this.searchForm = new FormGroup({
@@ -59,9 +63,18 @@ export class DetailComponent implements OnInit {
     return textFilter;
   }
 
-  back(){
+  onTableScroll(e) {
+    console.log('e');
+    const tableViewHeight = e.target.offsetHeight // viewport: ~500px
+    const tableScrollHeight = e.target.scrollHeight // length of all table
+    const scrollLocation = e.target.scrollTop; // how far user scrolled
 
+    // If the user has scrolled within 200px of the bottom, add more data
+    const buffer = 200;
+    const limit = tableScrollHeight - tableViewHeight - buffer;
+    if (scrollLocation > limit) {
+      this.results = this.results.concat(this.commits);
+    }
   }
-
 
 }
